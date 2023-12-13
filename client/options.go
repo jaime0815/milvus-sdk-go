@@ -17,6 +17,7 @@ import (
 	"github.com/cockroachdb/errors"
 
 	"github.com/milvus-io/milvus-proto/go-api/v2/milvuspb"
+
 	"github.com/milvus-io/milvus-sdk-go/v2/entity"
 )
 
@@ -240,6 +241,110 @@ func IsBackup() BulkInsertOption {
 	return func(req *milvuspb.ImportRequest) {
 		optionMap := entity.KvPairsMap(req.GetOptions())
 		optionMap["backup"] = "true"
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithBucket(bucket string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["bucket"] = bucket
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithStorageType(storageType string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["storage_type"] = fmt.Sprint(storageType)
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithAddress(address string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["endpoint"] = address
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithAccessKeyID(accessKeyID string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["access_kye_id"] = accessKeyID
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithSecretAccessKeyID(secretAccessKeyID string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["secret_access_key_id"] = secretAccessKeyID
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithUseSSL(useSSL bool) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["use_SSL"] = fmt.Sprint(useSSL)
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithRootPath(rootPath string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["root_path"] = rootPath
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithUseIAM(useIAM bool) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["use_IAM"] = fmt.Sprint(useIAM)
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithCloudProvider(cloudProvider string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["cloud_provider"] = cloudProvider
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithIamEndpoint(iamEndpoint string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["IAM_endpoint"] = iamEndpoint
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithUseVirtualHost(useVirtualHost bool) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["use_virtual_host"] = fmt.Sprint(useVirtualHost)
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithRegion(region string) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["region"] = region
+		req.Options = entity.MapKvPairs(optionMap)
+	}
+}
+
+func WithRequestTimeoutMs(requestTimeoutMs int64) BulkInsertOption {
+	return func(req *milvuspb.ImportRequest) {
+		optionMap := entity.KvPairsMap(req.GetOptions())
+		optionMap["request_timeout_ms"] = fmt.Sprint(requestTimeoutMs)
 		req.Options = entity.MapKvPairs(optionMap)
 	}
 }
